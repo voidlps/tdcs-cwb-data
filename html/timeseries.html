@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>國道天氣及車流綜合分析呈現</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/styles.css?v=1.0">
+  <style>
+  </style>
+</head>
+<body>
+<div class="jumbotron">
+  <h3><span id="selected_area" class="bg-success text-white"></span><br/>區域過去24小時資訊
+<!--
+   <button type="button" class="btn btn-light border border-dark" id="refresh">
+    <img src="icon/octicons-6.0.1/lib/svg/sync.svg"/>更新資料
+  </button>
+-->
+  <span class="badge badge-dark" style="font-size:50%;font-weight:100" id="timestamp"></span>
+  </h3>
+  <br/>
+  <iframe id=dashboard height="600" width="900"></iframe>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script>
+     // should be 'station:A1AA50+OR+id:01F0147S+OR+id:01F0155S'
+     var query = window.location.search==''?'*':window.location.search.substring(1);
+     var hash= window.location.hash==''?'':window.location.hash.substring(1);
+     $("#selected_area").text(decodeURI(hash));
+     var dashboard="/app/kibana#/dashboard/AV7khiffu6UGG-0py_yE?embed=true&_g=(refreshInterval:(display:Off,pause:!f,value:0),time:(from:now-24h,mode:quick,to:now))&_a=(description:'',filters:!(),options:(darkTheme:!f),panels:!((col:1,id:AV7WF4gZkBFclQVreqPJ,panelIndex:1,row:1,size_x:12,size_y:3,type:visualization),(col:1,id:AV7hrRjmu6UGG-0py_x9,panelIndex:2,row:4,size_x:12,size_y:2,type:visualization)),query:(query_string:(query:'" + query + "')),timeRestore:!t,title:Past24H,uiState:(P-1:(vis:(legendOpen:!t))),viewMode:view)"
+     function fixKibana(iframeSelector) {
+       var iframe=$(iframeSelector).contents();
+       var filterBar=iframe.find("filter-bar");
+       var retry=0;
+       if (filterBar.length==0) {
+         console.log('kibana not ready, try again later');
+         retry=1;
+       } else {
+         filterBar.html('');
+       }
+
+       var circles=iframe.find("circle[data-label]");
+       if (circles.length==0) {
+         console.log('kibana not ready, try again later');
+         retry=1;
+       } else {
+         circles.each(function() {
+           var r=$(this).attr("r");
+           if (r>6) $(this).attr("r",6);
+         });
+       }
+       if (retry)
+         setTimeout(function() {fixKibana(iframeSelector)},1000);
+     }
+     $("#dashboard").attr("src",dashboard);
+     fixKibana("#dashboard");
+  </script>
+</div>
+</body>

@@ -1,0 +1,142 @@
+[
+  {
+    "_id": "AV7VzI42kBFclQVreqO8",
+    "_type": "visualization",
+    "_source": {
+      "title": "Heatmap-01N-count",
+      "visState": "{\"title\":\"Heatmap-01N-count\",\"type\":\"heatmap\",\"params\":{\"addTooltip\":true,\"addLegend\":true,\"enableHover\":false,\"legendPosition\":\"right\",\"times\":[],\"colorsNumber\":10,\"colorSchema\":\"Green to Red\",\"setColorRange\":false,\"colorsRange\":[],\"invertColors\":false,\"percentageMode\":false,\"valueAxes\":[{\"show\":false,\"id\":\"ValueAxis-1\",\"type\":\"value\",\"scale\":{\"type\":\"linear\",\"defaultYExtents\":false},\"labels\":{\"show\":false,\"rotate\":0,\"color\":\"#555\"}}]},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"max\",\"schema\":\"metric\",\"params\":{\"field\":\"count\"}},{\"id\":\"2\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"segment\",\"params\":{\"field\":\"id.keyword\",\"size\":300,\"order\":\"asc\",\"orderBy\":\"_term\",\"customLabel\":\"國道計費門架\"}},{\"id\":\"3\",\"enabled\":true,\"type\":\"date_histogram\",\"schema\":\"group\",\"params\":{\"field\":\"@timestamp\",\"interval\":\"custom\",\"customInterval\":\"5m\",\"min_doc_count\":1,\"extended_bounds\":{},\"customLabel\":\"時間\"}}],\"listeners\":{}}",
+      "uiStateJSON": "{\"vis\":{\"defaultColors\":{\"0 - 65\":\"rgb(0,104,55)\",\"65 - 130\":\"rgb(26,151,80)\",\"130 - 195\":\"rgb(102,189,99)\",\"195 - 260\":\"rgb(166,217,106)\",\"260 - 325\":\"rgb(217,239,139)\",\"325 - 390\":\"rgb(255,255,190)\",\"390 - 455\":\"rgb(254,224,139)\",\"455 - 520\":\"rgb(253,174,97)\",\"520 - 585\":\"rgb(244,109,67)\",\"585 - 650\":\"rgb(214,47,39)\"}}}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"AV7VoQJInoh_3siphiuC\",\"query\":{\"bool\":{\"must\":[{\"wildcard\":{\"id.keyword\":\"01*N\"}},{\"match\":{\"datatype\":\"m03a\"}}]}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "AV7Vyn5LkBFclQVreqO7",
+    "_type": "visualization",
+    "_source": {
+      "title": "Heatmap-01N-speed",
+      "visState": "{\"title\":\"Heatmap-01N-speed\",\"type\":\"heatmap\",\"params\":{\"addTooltip\":true,\"addLegend\":true,\"enableHover\":false,\"legendPosition\":\"right\",\"times\":[],\"colorsNumber\":10,\"colorSchema\":\"Greens\",\"setColorRange\":true,\"colorsRange\":[{\"from\":1,\"to\":60},{\"from\":60,\"to\":65},{\"from\":65,\"to\":70},{\"from\":70,\"to\":75},{\"from\":75,\"to\":80},{\"from\":80,\"to\":85},{\"from\":85,\"to\":90},{\"from\":90,\"to\":95},{\"from\":95,\"to\":100},{\"from\":100,\"to\":120},{\"from\":120,\"to\":200}],\"invertColors\":false,\"percentageMode\":false,\"valueAxes\":[{\"show\":false,\"id\":\"ValueAxis-1\",\"type\":\"value\",\"scale\":{\"type\":\"linear\",\"defaultYExtents\":false},\"labels\":{\"show\":false,\"rotate\":0,\"color\":\"#555\"}}]},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"max\",\"schema\":\"metric\",\"params\":{\"field\":\"speed\"}},{\"id\":\"2\",\"enabled\":true,\"type\":\"date_histogram\",\"schema\":\"group\",\"params\":{\"field\":\"@timestamp\",\"interval\":\"custom\",\"customInterval\":\"5m\",\"min_doc_count\":1,\"extended_bounds\":{},\"customLabel\":\"時間\"}},{\"id\":\"3\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"segment\",\"params\":{\"field\":\"id.keyword\",\"size\":300,\"order\":\"asc\",\"orderBy\":\"_term\",\"customLabel\":\"國道計費門架\"}}],\"listeners\":{}}",
+      "uiStateJSON": "{\"vis\":{\"defaultColors\":{\"1 - 60\":\"rgb(247,252,245)\",\"60 - 65\":\"rgb(233,247,228)\",\"65 - 70\":\"rgb(211,238,205)\",\"70 - 75\":\"rgb(184,227,177)\",\"75 - 80\":\"rgb(152,213,148)\",\"80 - 85\":\"rgb(116,196,118)\",\"85 - 90\":\"rgb(75,176,98)\",\"90 - 95\":\"rgb(47,152,79)\",\"95 - 100\":\"rgb(21,127,59)\",\"100 - 120\":\"rgb(0,100,40)\",\"120 - 200\":\"rgb(0,68,27)\"},\"colors\":{\"60 - 65\":\"#F2C96D\",\"1 - 60\":\"#E0752D\",\"65 - 70\":\"#F4D598\"},\"legendOpen\":true}}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"AV7VoQJInoh_3siphiuC\",\"query\":{\"bool\":{\"must\":[{\"wildcard\":{\"id.keyword\":\"01*N\"}},{\"match\":{\"datatype\":\"m05a\"}}]}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "AV7V3WPZkBFclQVreqPE",
+    "_type": "visualization",
+    "_source": {
+      "title": "Heatmap-01S-speed",
+      "visState": "{\"title\":\"Heatmap-01S-speed\",\"type\":\"heatmap\",\"params\":{\"addTooltip\":true,\"addLegend\":true,\"enableHover\":false,\"legendPosition\":\"right\",\"times\":[],\"colorsNumber\":10,\"colorSchema\":\"Greens\",\"setColorRange\":true,\"colorsRange\":[{\"from\":1,\"to\":60},{\"from\":60,\"to\":65},{\"from\":65,\"to\":70},{\"from\":70,\"to\":75},{\"from\":75,\"to\":80},{\"from\":80,\"to\":85},{\"from\":85,\"to\":90},{\"from\":90,\"to\":95},{\"from\":95,\"to\":100},{\"from\":100,\"to\":120},{\"from\":120,\"to\":200}],\"invertColors\":false,\"percentageMode\":false,\"valueAxes\":[{\"show\":false,\"id\":\"ValueAxis-1\",\"type\":\"value\",\"scale\":{\"type\":\"linear\",\"defaultYExtents\":false},\"labels\":{\"show\":false,\"rotate\":0,\"color\":\"#555\"}}]},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"max\",\"schema\":\"metric\",\"params\":{\"field\":\"speed\"}},{\"id\":\"2\",\"enabled\":true,\"type\":\"date_histogram\",\"schema\":\"group\",\"params\":{\"field\":\"@timestamp\",\"interval\":\"custom\",\"customInterval\":\"5m\",\"min_doc_count\":1,\"extended_bounds\":{},\"customLabel\":\"時間\"}},{\"id\":\"3\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"segment\",\"params\":{\"field\":\"id.keyword\",\"size\":300,\"order\":\"asc\",\"orderBy\":\"_term\",\"customLabel\":\"國道計費門架\"}}],\"listeners\":{}}",
+      "uiStateJSON": "{\"vis\":{\"defaultColors\":{\"1 - 60\":\"rgb(247,252,245)\",\"60 - 65\":\"rgb(233,247,228)\",\"65 - 70\":\"rgb(211,238,205)\",\"70 - 75\":\"rgb(184,227,177)\",\"75 - 80\":\"rgb(152,213,148)\",\"80 - 85\":\"rgb(116,196,118)\",\"85 - 90\":\"rgb(75,176,98)\",\"90 - 95\":\"rgb(47,152,79)\",\"95 - 100\":\"rgb(21,127,59)\",\"100 - 120\":\"rgb(0,100,40)\",\"120 - 200\":\"rgb(0,68,27)\"},\"colors\":{\"60 - 65\":\"#F2C96D\",\"1 - 60\":\"#E0752D\",\"65 - 70\":\"#F4D598\"},\"legendOpen\":true}}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"AV7VoQJInoh_3siphiuC\",\"query\":{\"bool\":{\"must\":[{\"wildcard\":{\"id.keyword\":\"01*S\"}},{\"match\":{\"datatype\":\"m05a\"}}]}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "AV7V3h0NkBFclQVreqPG",
+    "_type": "visualization",
+    "_source": {
+      "title": "Heatmap-03N-speed",
+      "visState": "{\"title\":\"Heatmap-03N-speed\",\"type\":\"heatmap\",\"params\":{\"addTooltip\":true,\"addLegend\":true,\"enableHover\":false,\"legendPosition\":\"right\",\"times\":[],\"colorsNumber\":10,\"colorSchema\":\"Greens\",\"setColorRange\":true,\"colorsRange\":[{\"from\":1,\"to\":60},{\"from\":60,\"to\":65},{\"from\":65,\"to\":70},{\"from\":70,\"to\":75},{\"from\":75,\"to\":80},{\"from\":80,\"to\":85},{\"from\":85,\"to\":90},{\"from\":90,\"to\":95},{\"from\":95,\"to\":100},{\"from\":100,\"to\":120},{\"from\":120,\"to\":200}],\"invertColors\":false,\"percentageMode\":false,\"valueAxes\":[{\"show\":false,\"id\":\"ValueAxis-1\",\"type\":\"value\",\"scale\":{\"type\":\"linear\",\"defaultYExtents\":false},\"labels\":{\"show\":false,\"rotate\":0,\"color\":\"#555\"}}]},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"max\",\"schema\":\"metric\",\"params\":{\"field\":\"speed\"}},{\"id\":\"2\",\"enabled\":true,\"type\":\"date_histogram\",\"schema\":\"group\",\"params\":{\"field\":\"@timestamp\",\"interval\":\"custom\",\"customInterval\":\"5m\",\"min_doc_count\":1,\"extended_bounds\":{},\"customLabel\":\"時間\"}},{\"id\":\"3\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"segment\",\"params\":{\"field\":\"id.keyword\",\"size\":300,\"order\":\"asc\",\"orderBy\":\"_term\",\"customLabel\":\"國道計費門架\"}}],\"listeners\":{}}",
+      "uiStateJSON": "{\"vis\":{\"defaultColors\":{\"1 - 60\":\"rgb(247,252,245)\",\"60 - 65\":\"rgb(233,247,228)\",\"65 - 70\":\"rgb(211,238,205)\",\"70 - 75\":\"rgb(184,227,177)\",\"75 - 80\":\"rgb(152,213,148)\",\"80 - 85\":\"rgb(116,196,118)\",\"85 - 90\":\"rgb(75,176,98)\",\"90 - 95\":\"rgb(47,152,79)\",\"95 - 100\":\"rgb(21,127,59)\",\"100 - 120\":\"rgb(0,100,40)\",\"120 - 200\":\"rgb(0,68,27)\"},\"colors\":{\"60 - 65\":\"#F2C96D\",\"1 - 60\":\"#E0752D\",\"65 - 70\":\"#F4D598\"},\"legendOpen\":true}}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"AV7VoQJInoh_3siphiuC\",\"query\":{\"bool\":{\"must\":[{\"wildcard\":{\"id.keyword\":\"03*N\"}},{\"match\":{\"datatype\":\"m05a\"}}]}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "AV7V3dDNkBFclQVreqPF",
+    "_type": "visualization",
+    "_source": {
+      "title": "Heatmap-03S-speed",
+      "visState": "{\"title\":\"Heatmap-03S-speed\",\"type\":\"heatmap\",\"params\":{\"addTooltip\":true,\"addLegend\":true,\"enableHover\":false,\"legendPosition\":\"right\",\"times\":[],\"colorsNumber\":10,\"colorSchema\":\"Greens\",\"setColorRange\":true,\"colorsRange\":[{\"from\":1,\"to\":60},{\"from\":60,\"to\":65},{\"from\":65,\"to\":70},{\"from\":70,\"to\":75},{\"from\":75,\"to\":80},{\"from\":80,\"to\":85},{\"from\":85,\"to\":90},{\"from\":90,\"to\":95},{\"from\":95,\"to\":100},{\"from\":100,\"to\":120},{\"from\":120,\"to\":200}],\"invertColors\":false,\"percentageMode\":false,\"valueAxes\":[{\"show\":false,\"id\":\"ValueAxis-1\",\"type\":\"value\",\"scale\":{\"type\":\"linear\",\"defaultYExtents\":false},\"labels\":{\"show\":false,\"rotate\":0,\"color\":\"#555\"}}]},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"max\",\"schema\":\"metric\",\"params\":{\"field\":\"speed\"}},{\"id\":\"2\",\"enabled\":true,\"type\":\"date_histogram\",\"schema\":\"group\",\"params\":{\"field\":\"@timestamp\",\"interval\":\"custom\",\"customInterval\":\"5m\",\"min_doc_count\":1,\"extended_bounds\":{},\"customLabel\":\"時間\"}},{\"id\":\"3\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"segment\",\"params\":{\"field\":\"id.keyword\",\"size\":300,\"order\":\"asc\",\"orderBy\":\"_term\",\"customLabel\":\"國道計費門架\"}}],\"listeners\":{}}",
+      "uiStateJSON": "{\"vis\":{\"defaultColors\":{\"1 - 60\":\"rgb(247,252,245)\",\"60 - 65\":\"rgb(233,247,228)\",\"65 - 70\":\"rgb(211,238,205)\",\"70 - 75\":\"rgb(184,227,177)\",\"75 - 80\":\"rgb(152,213,148)\",\"80 - 85\":\"rgb(116,196,118)\",\"85 - 90\":\"rgb(75,176,98)\",\"90 - 95\":\"rgb(47,152,79)\",\"95 - 100\":\"rgb(21,127,59)\",\"100 - 120\":\"rgb(0,100,40)\",\"120 - 200\":\"rgb(0,68,27)\"},\"colors\":{\"60 - 65\":\"#F2C96D\",\"1 - 60\":\"#E0752D\",\"65 - 70\":\"#F4D598\"},\"legendOpen\":true}}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"AV7VoQJInoh_3siphiuC\",\"query\":{\"bool\":{\"must\":[{\"wildcard\":{\"id.keyword\":\"03*S\"}},{\"match\":{\"datatype\":\"m05a\"}}]}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "AV7V0GBAkBFclQVreqO_",
+    "_type": "visualization",
+    "_source": {
+      "title": "Heatmap-03N-count",
+      "visState": "{\"title\":\"Heatmap-03N-count\",\"type\":\"heatmap\",\"params\":{\"addTooltip\":true,\"addLegend\":true,\"enableHover\":false,\"legendPosition\":\"right\",\"times\":[],\"colorsNumber\":10,\"colorSchema\":\"Green to Red\",\"setColorRange\":false,\"colorsRange\":[],\"invertColors\":false,\"percentageMode\":false,\"valueAxes\":[{\"show\":false,\"id\":\"ValueAxis-1\",\"type\":\"value\",\"scale\":{\"type\":\"linear\",\"defaultYExtents\":false},\"labels\":{\"show\":false,\"rotate\":0,\"color\":\"#555\"}}]},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"max\",\"schema\":\"metric\",\"params\":{\"field\":\"count\"}},{\"id\":\"2\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"segment\",\"params\":{\"field\":\"id.keyword\",\"size\":300,\"order\":\"asc\",\"orderBy\":\"_term\",\"customLabel\":\"國道計費門架\"}},{\"id\":\"3\",\"enabled\":true,\"type\":\"date_histogram\",\"schema\":\"group\",\"params\":{\"field\":\"@timestamp\",\"interval\":\"custom\",\"customInterval\":\"5m\",\"min_doc_count\":1,\"extended_bounds\":{},\"customLabel\":\"時間\"}}],\"listeners\":{}}",
+      "uiStateJSON": "{\"vis\":{\"defaultColors\":{\"0 - 45\":\"rgb(0,104,55)\",\"45 - 90\":\"rgb(26,151,80)\",\"90 - 135\":\"rgb(102,189,99)\",\"135 - 180\":\"rgb(166,217,106)\",\"180 - 225\":\"rgb(217,239,139)\",\"225 - 270\":\"rgb(255,255,190)\",\"270 - 315\":\"rgb(254,224,139)\",\"315 - 360\":\"rgb(253,174,97)\",\"360 - 405\":\"rgb(244,109,67)\",\"405 - 450\":\"rgb(214,47,39)\"}}}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"AV7VoQJInoh_3siphiuC\",\"query\":{\"bool\":{\"must\":[{\"wildcard\":{\"id.keyword\":\"03*N\"}},{\"match\":{\"datatype\":\"m03a\"}}]}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "AV7Vz_edkBFclQVreqO-",
+    "_type": "visualization",
+    "_source": {
+      "title": "Heatmap-03S-count",
+      "visState": "{\"title\":\"Heatmap-03S-count\",\"type\":\"heatmap\",\"params\":{\"addTooltip\":true,\"addLegend\":true,\"enableHover\":false,\"legendPosition\":\"right\",\"times\":[],\"colorsNumber\":10,\"colorSchema\":\"Green to Red\",\"setColorRange\":false,\"colorsRange\":[],\"invertColors\":false,\"percentageMode\":false,\"valueAxes\":[{\"show\":false,\"id\":\"ValueAxis-1\",\"type\":\"value\",\"scale\":{\"type\":\"linear\",\"defaultYExtents\":false},\"labels\":{\"show\":false,\"rotate\":0,\"color\":\"#555\"}}]},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"max\",\"schema\":\"metric\",\"params\":{\"field\":\"count\"}},{\"id\":\"2\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"segment\",\"params\":{\"field\":\"id.keyword\",\"size\":300,\"order\":\"asc\",\"orderBy\":\"_term\",\"customLabel\":\"國道計費門架\"}},{\"id\":\"3\",\"enabled\":true,\"type\":\"date_histogram\",\"schema\":\"group\",\"params\":{\"field\":\"@timestamp\",\"interval\":\"custom\",\"customInterval\":\"5m\",\"min_doc_count\":1,\"extended_bounds\":{},\"customLabel\":\"時間\"}}],\"listeners\":{}}",
+      "uiStateJSON": "{\"vis\":{\"defaultColors\":{\"0 - 45\":\"rgb(0,104,55)\",\"45 - 90\":\"rgb(26,151,80)\",\"90 - 135\":\"rgb(102,189,99)\",\"135 - 180\":\"rgb(166,217,106)\",\"180 - 225\":\"rgb(217,239,139)\",\"225 - 270\":\"rgb(255,255,190)\",\"270 - 315\":\"rgb(254,224,139)\",\"315 - 360\":\"rgb(253,174,97)\",\"360 - 405\":\"rgb(244,109,67)\",\"405 - 450\":\"rgb(214,47,39)\"}}}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"AV7VoQJInoh_3siphiuC\",\"query\":{\"bool\":{\"must\":[{\"wildcard\":{\"id.keyword\":\"03*S\"}},{\"match\":{\"datatype\":\"m03a\"}}]}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "AV7Vz7VmkBFclQVreqO9",
+    "_type": "visualization",
+    "_source": {
+      "title": "Heatmap-01S-count",
+      "visState": "{\"title\":\"Heatmap-01S-count\",\"type\":\"heatmap\",\"params\":{\"addTooltip\":true,\"addLegend\":true,\"enableHover\":false,\"legendPosition\":\"right\",\"times\":[],\"colorsNumber\":10,\"colorSchema\":\"Green to Red\",\"setColorRange\":false,\"colorsRange\":[],\"invertColors\":false,\"percentageMode\":false,\"valueAxes\":[{\"show\":false,\"id\":\"ValueAxis-1\",\"type\":\"value\",\"scale\":{\"type\":\"linear\",\"defaultYExtents\":false},\"labels\":{\"show\":false,\"rotate\":0,\"color\":\"#555\"}}]},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"max\",\"schema\":\"metric\",\"params\":{\"field\":\"count\"}},{\"id\":\"2\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"segment\",\"params\":{\"field\":\"id.keyword\",\"size\":300,\"order\":\"asc\",\"orderBy\":\"_term\",\"customLabel\":\"國道計費門架\"}},{\"id\":\"3\",\"enabled\":true,\"type\":\"date_histogram\",\"schema\":\"group\",\"params\":{\"field\":\"@timestamp\",\"interval\":\"custom\",\"customInterval\":\"5m\",\"min_doc_count\":1,\"extended_bounds\":{},\"customLabel\":\"時間\"}}],\"listeners\":{}}",
+      "uiStateJSON": "{\"vis\":{\"defaultColors\":{\"0 - 60\":\"rgb(0,104,55)\",\"60 - 120\":\"rgb(26,151,80)\",\"120 - 180\":\"rgb(102,189,99)\",\"180 - 240\":\"rgb(166,217,106)\",\"240 - 300\":\"rgb(217,239,139)\",\"300 - 360\":\"rgb(255,255,190)\",\"360 - 420\":\"rgb(254,224,139)\",\"420 - 480\":\"rgb(253,174,97)\",\"480 - 540\":\"rgb(244,109,67)\",\"540 - 600\":\"rgb(214,47,39)\"}}}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"AV7VoQJInoh_3siphiuC\",\"query\":{\"bool\":{\"must\":[{\"wildcard\":{\"id.keyword\":\"01*S\"}},{\"match\":{\"datatype\":\"m03a\"}}]}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "AV7hrRjmu6UGG-0py_x9",
+    "_type": "visualization",
+    "_source": {
+      "title": "TopRainBar",
+      "visState": "{\"title\":\"TopRainBar\",\"type\":\"histogram\",\"params\":{\"grid\":{\"categoryLines\":true,\"style\":{\"color\":\"#eee\"},\"valueAxis\":\"ValueAxis-1\"},\"categoryAxes\":[{\"id\":\"CategoryAxis-1\",\"type\":\"category\",\"position\":\"bottom\",\"show\":true,\"style\":{},\"scale\":{\"type\":\"linear\"},\"labels\":{\"show\":true,\"truncate\":100,\"filter\":false},\"title\":{\"text\":\"時間\"}}],\"valueAxes\":[{\"id\":\"ValueAxis-1\",\"name\":\"LeftAxis-1\",\"type\":\"value\",\"position\":\"left\",\"show\":true,\"style\":{},\"scale\":{\"type\":\"linear\",\"mode\":\"normal\"},\"labels\":{\"show\":true,\"rotate\":0,\"filter\":false,\"truncate\":100},\"title\":{\"text\":\"雨量\"}}],\"seriesParams\":[{\"show\":\"true\",\"type\":\"histogram\",\"mode\":\"normal\",\"data\":{\"label\":\"雨量\",\"id\":\"1\"},\"valueAxis\":\"ValueAxis-1\",\"drawLinesBetweenPoints\":true,\"showCircles\":true}],\"addTooltip\":true,\"addLegend\":true,\"legendPosition\":\"right\",\"times\":[],\"addTimeMarker\":true},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"avg\",\"schema\":\"metric\",\"params\":{\"field\":\"rain\",\"customLabel\":\"雨量\"}},{\"id\":\"2\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"group\",\"params\":{\"field\":\"name.keyword\",\"size\":10,\"order\":\"desc\",\"orderBy\":\"1\",\"customLabel\":\"\"}},{\"id\":\"3\",\"enabled\":true,\"type\":\"date_histogram\",\"schema\":\"segment\",\"params\":{\"field\":\"@timestamp\",\"interval\":\"custom\",\"customInterval\":\"10m\",\"min_doc_count\":1,\"extended_bounds\":{},\"customLabel\":\"時間\"}}],\"listeners\":{}}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"AV7VoQJInoh_3siphiuC\",\"query\":{\"query_string\":{\"query\":\"_type:cwb_rain\",\"analyze_wildcard\":true}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "AV7WF4gZkBFclQVreqPJ",
+    "_type": "visualization",
+    "_source": {
+      "title": "SlowNow",
+      "visState": "{\"title\":\"SlowNow\",\"type\":\"line\",\"params\":{\"grid\":{\"categoryLines\":true,\"style\":{\"color\":\"#eee\"},\"valueAxis\":\"ValueAxis-1\"},\"categoryAxes\":[{\"id\":\"CategoryAxis-1\",\"type\":\"category\",\"position\":\"bottom\",\"show\":true,\"style\":{},\"scale\":{\"type\":\"linear\"},\"labels\":{\"show\":true,\"truncate\":100},\"title\":{\"text\":\"時間\"}}],\"valueAxes\":[{\"id\":\"ValueAxis-1\",\"name\":\"LeftAxis-1\",\"type\":\"value\",\"position\":\"left\",\"show\":true,\"style\":{},\"scale\":{\"type\":\"linear\",\"mode\":\"normal\",\"defaultYExtents\":false,\"setYExtents\":false},\"labels\":{\"show\":true,\"rotate\":0,\"filter\":false,\"truncate\":100},\"title\":{\"text\":\"車速\"}}],\"seriesParams\":[{\"show\":\"true\",\"type\":\"line\",\"mode\":\"normal\",\"data\":{\"label\":\"車速\",\"id\":\"1\"},\"valueAxis\":\"ValueAxis-1\",\"drawLinesBetweenPoints\":true,\"showCircles\":true,\"lineWidth\":1.5,\"interpolate\":\"linear\"}],\"addTooltip\":true,\"addLegend\":true,\"legendPosition\":\"right\",\"times\":[],\"addTimeMarker\":false,\"radiusRatio\":\"1\"},\"aggs\":[{\"id\":\"4\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"group\",\"params\":{\"field\":\"id.keyword\",\"size\":10,\"orderAgg\":{\"id\":\"4-orderAgg\",\"enabled\":true,\"type\":\"avg\",\"schema\":\"orderAgg\",\"params\":{\"field\":\"speed\"}},\"order\":\"asc\",\"orderBy\":\"custom\"}},{\"id\":\"1\",\"enabled\":true,\"type\":\"max\",\"schema\":\"metric\",\"params\":{\"field\":\"speed\",\"customLabel\":\"車速\"}},{\"id\":\"3\",\"enabled\":true,\"type\":\"date_histogram\",\"schema\":\"segment\",\"params\":{\"field\":\"@timestamp\",\"interval\":\"custom\",\"customInterval\":\"10m\",\"min_doc_count\":1,\"extended_bounds\":{},\"customLabel\":\"時間\"}},{\"id\":\"2\",\"enabled\":true,\"type\":\"avg\",\"schema\":\"radius\",\"params\":{\"field\":\"count\"}}],\"listeners\":{}}",
+      "uiStateJSON": "{\"vis\":{\"legendOpen\":true},\"spy\":{\"mode\":{\"name\":\"table\",\"fill\":false}}}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"AV7VoQJInoh_3siphiuC\",\"query\":{\"query_string\":{\"query\":\"speed:>0 AND count:>=10 AND datatype:m05a AND cartype:31\",\"analyze_wildcard\":true}},\"filter\":[]}"
+      }
+    }
+  }
+]

@@ -1,0 +1,207 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>國道天氣及車流綜合分析呈現</title>
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/styles.css?v=1.0">
+  <style>
+    .cwb-rain-item {
+      position:absolute;
+      left:-10000px;
+      width: 95%;
+      max-width: 95%;
+    }
+  </style>
+</head>
+<body>
+<div class="jumbotron">
+  <h2>國道天氣及車流綜合分析呈現
+  <button type="button" class="btn btn-light border border-dark" id="refresh">
+    <img src="icon/octicons-6.0.1/lib/svg/sync.svg"/>更新資料
+  </button>
+  <span class="badge badge-dark" style="font-size:50%;font-weight:100" id="timestamp"></span>
+  </h2>
+  <br/>
+  <div id="selection" class="m-3"></div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-4">
+        <h5 class="p-2 text-white bg-secondary">目前下雨地區</h5>
+        <ul id="nav1" class="nav nav-pills" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link cwb-rain" href="#radar" role="tab" data-toggle="pill">
+                <img src="icon/octicons-6.0.1/lib/svg/broadcast.svg"/> 雷達回波
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link cwb-rain" href="#graph" role="tab" data-toggle="pill">
+                <img src="icon/octicons-6.0.1/lib/svg/graph.svg"/> 雨量圖表
+            </a>
+          </li>
+        </ul>
+        <img id="radar" class="cwb-rain-item" data-src="http://opendata.cwb.gov.tw/opendata/DIV4/O-A0011-001.jpg"
+           src="http://opendata.cwb.gov.tw/opendata/DIV4/O-A0011-001.jpg"/>
+        <div id="graph" class="embed-responsive embed-responsive-1by1 cwb-rain-item">
+          <iframe id="rain" src="/app/kibana#/visualize/edit/AV7hrRjmu6UGG-0py_x9?embed=true&_g=(refreshInterval%3A(display%3AOff%2Cpause%3A!f%2Cvalue%3A0)%2Ctime%3A(from%3Anow-4h%2Cmode%3Aquick%2Cto%3Anow))"></iframe>
+        </div>
+      </div>
+      <div class="col-8">
+        <h5 class="p-2 text-white bg-secondary">車流及車速概況</h5>
+        <ul id="nav2" class="nav nav-pills" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link etcdashboard" href="#no1s" role="tab" data-toggle="pill"
+               data-src="/app/kibana#/dashboard/AV69qg6t9dUdIs9BP7n5?embed=true&_g=(refreshInterval%3A(display%3AOff%2Cpause%3A!f%2Cvalue%3A0)%2Ctime%3A(from%3Anow-1h%2Cmode%3Aquick%2Cto%3Anow))"
+            >國道一號南下</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link etcdashboard" href="#no1n" role="tab" data-toggle="pill"
+               data-src="/app/kibana#/dashboard/AV7hUclEu6UGG-0py_x7?embed=true&_g=(refreshInterval%3A(display%3AOff%2Cpause%3A!f%2Cvalue%3A0)%2Ctime%3A(from%3Anow-1h%2Cmode%3Aquick%2Cto%3Anow))"
+            >國道一號北上</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link etcdashboard" href="#no3s" role="tab" data-toggle="pill"
+               data-src="/app/kibana#/dashboard/AV7iM6gQu6UGG-0py_yA?embed=true&_g=(refreshInterval%3A(display%3AOff%2Cpause%3A!f%2Cvalue%3A0)%2Ctime%3A(from%3Anow-1h%2Cmode%3Aquick%2Cto%3Anow))"
+            >國道三號南下</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link etcdashboard" href="#no3n" role="tab" data-toggle="pill"
+               data-src="/app/kibana#/dashboard/AV7iNm7_u6UGG-0py_yB?embed=true&_g=(refreshInterval%3A(display%3AOff%2Cpause%3A!f%2Cvalue%3A0)%2Ctime%3A(from%3Anow-1h%2Cmode%3Aquick%2Cto%3Anow))"
+            >國道三號北上</a>
+          </li>
+        </ul>
+        <div class="embed-responsive embed-responsive-21by9">
+           <iframe id="etcdashboard" class="etcdashboard"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+ <script>
+    var cwbNameList = {};
+    var cwbList = {};
+    var etagCWB = [];
+    function fixKibana(iframeSelector) {
+      var iframe=$(iframeSelector).contents();
+      var filterBar=iframe.find("filter-bar");
+      if (filterBar.length>0 && filterBar.html().length>0) {
+        filterBar.html('');
+      }
+      iframe.find("div.legend-value-title").off('click').on('click',function(event) {
+        kibanaEventHandler(iframeSelector+",div.legend-value-title:"+$(this).text().trim());
+        event.stopPropagation();
+      });
+      iframe.find("g.tick").off('click').on('click',function(event) {
+        kibanaEventHandler(iframeSelector+",g.tick:"+$(this).text().trim());
+        event.stopPropagation();
+      });
+      iframe.find("g.square").off('click').on('click',function(event) {
+        var data=$(this).prop("__data__");
+        kibanaEventHandler(iframeSelector+",g.square:"+data.series+","+data.x+","+data.y);
+        event.stopPropagation();
+      });
+      iframe.find("g.series.histogram").off('click').on('click',function(event) {
+        kibanaEventHandler(iframeSelector+",g.series.histogram:"+$(this).find("rect").attr("data-label"));
+        event.stopPropagation();
+      });
+      setTimeout(function() {fixKibana(iframeSelector)},1000);
+    }
+
+    function cwbStationSelection(station) {
+      console.log(station);
+      var name=cwbList[station].name;
+      var found = etagCWB.filter(function(row) {
+        return row.cwb_gauge==station;
+      });
+      if (found.length == 0) alert(name + " 並非國道週邊區域");
+      else {
+        var query = "station:" + station +"+OR+" + found.map(function(row) {
+          return "id:"+row.ID;
+        }).join("+OR+");
+        var display= name +"(氣象站) " + found.map(function(row) {
+          return row.start+"-"+row.end;
+        }).join(" ");
+        $("#selection").html("<button type='button' class='selection btn btn-success' data-query='" + query + "' onclick='showTimeseries(event)')>"+display+"</button> (請點選開啟區域分析圖表)");
+        console.log("rain station selcted:" + station + "?" + query);
+      } 
+    }
+
+    function showTimeseries(e) {
+      var btn=$(e.target);
+      window.open("timeseries.html?"+btn.attr("data-query")+"#"+btn.text()); 
+    }
+
+    function kibanaEventHandler(eventMessage) {
+      var p = eventMessage.indexOf(':');
+      var eventType = p==-1?eventMessage:eventMessage.substring(0,p);
+      var data = p==-1?eventMessage:eventMessage.substring(p+1);
+      switch (eventType) {
+        case "iframe#rain,div.legend-value-title":
+        case "iframe#rain,g.series.histogram":
+          var cwb = cwbNameList[data];
+          cwbStationSelection(cwb.id); 
+          break;
+        default:
+          var regexEtagGate= /[0-9]{2}[A-Z][R0-9]{4}[NESW]/g;
+          var etagGate = regexEtagGate.exec(data);
+          if (etagGate) { 
+            console.log("etag selected:" + etagGate);
+            var found=etagCWB.filter(function(row) {
+              return row.ID==etagGate;
+            });
+            if (found.length>0) cwbStationSelection(found[0].cwb_gauge); 
+          }
+          else console.log(eventType+","+data);
+        break;
+      }
+    }
+    function updateTimestamp() {
+      $('#timestamp').text("上次更新時間:"+new Date().toString());
+    }
+    function loadCWBETAGMapping() {
+      d3.csv('data/cwb-list.csv',function(data) {
+        data.forEach(function(row) {
+          cwbList[row.id] = row;
+          cwbNameList[row.name] = row;
+        });
+      });
+      d3.csv('data/etc-cwb.csv', function (data) {
+        data.forEach(function(row) {
+          etagCWB.push(row);
+        });
+      });
+    }
+    $('a.nav-link.cwb-rain').on('shown.bs.tab', function () {
+        var id=$(this).attr("href").substring(1);
+        $('a.nav-link.cwb-rain').removeClass('active');
+        $(this).addClass('active');
+        $('.cwb-rain-item').css('left','-10000px');
+        $('#'+id).css('left','15px');
+    })
+    $('a.nav-link.etcdashboard').on('shown.bs.tab', function () {
+        $('iframe#etcdashboard').attr('src',$(this).attr("data-src"));
+    })
+    $('#refresh').on('click', function() {
+        $('iframe').each(function () {
+          this.contentWindow.location.reload(true);
+        })
+        var imgradar=$('img#radar');
+        imgradar.attr('src',imgradar.attr('data-src')+'?t='+Date.now());
+        updateTimestamp();
+    })
+    $(document).ready(function(){
+        loadCWBETAGMapping();
+        $('iframe').each(function() {
+          fixKibana('iframe#' + this.id);
+        });
+        $("a[href='#no1s']").tab('show');
+        $("a[href='#radar']").tab('show');
+        updateTimestamp();
+    });
+   </script>
+</body>
+</html>

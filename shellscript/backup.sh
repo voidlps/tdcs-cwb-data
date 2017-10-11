@@ -1,0 +1,10 @@
+#!/bin/bash
+d=$PWD
+# Absolute path to this script, e.g. /home/user/bin/foo.sh
+SCRIPT=$(readlink -f "$0")
+# Absolute path this script is in, thus /home/user/bin
+SCRIPTPATH=$(dirname "$SCRIPT")
+
+cd $SCRIPTPATH
+tar czvf backup/etag-`date -Iminute`.tgz etag/ tdcs_redirect/ html/ *.sh
+cd $d
