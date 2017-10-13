@@ -117,8 +117,9 @@
       var found = etagCWB.filter(function(row) {
         return row.cwb_gauge==station;
       });
-      if (found.length == 0) alert(name + " 並非國道週邊區域");
-      else {
+      if (found.length == 0) {
+        $("#selection").append("<div class='alert alert-warning alert-dismissible fade show' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>" + name + " 並非國道週邊區域</div>");
+      } else {
         var query = "station:" + station +"+OR+" + found.map(function(row) {
           return "id:"+row.ID;
         }).join("+OR+");
