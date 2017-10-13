@@ -44,7 +44,7 @@
         <img id="radar" class="cwb-rain-item" data-src="http://opendata.cwb.gov.tw/opendata/DIV4/O-A0011-001.jpg"
            src="http://opendata.cwb.gov.tw/opendata/DIV4/O-A0011-001.jpg"/>
         <div id="graph" class="embed-responsive embed-responsive-1by1 cwb-rain-item">
-          <iframe id="rain" src="/app/kibana#/visualize/edit/AV7hrRjmu6UGG-0py_x9?embed=true&_g=(refreshInterval%3A(display%3AOff%2Cpause%3A!f%2Cvalue%3A0)%2Ctime%3A(from%3Anow-4h%2Cmode%3Aquick%2Cto%3Anow))"></iframe>
+          <iframe id="rain" src="/app/kibana#/visualize/edit/AV7hrRjmu6UGG-0py_x9?embed=true&_g=(refreshInterval%3A(display%3AOff%2Cpause%3A!f%2Cvalue%3A0)%2Ctime%3A(from%3Anow-4h%2Cmode%3Aquick%2Cto%3Anow))" data-src="/app/kibana#/visualize/edit/AV7hrRjmu6UGG-0py_x9?embed=true&amp;_g=(refreshInterval%3A(display%3AOff%2Cpause%3A!f%2Cvalue%3A0)%2Ctime%3A(from%3Anow-4h%2Cmode%3Aquick%2Cto%3Anow))"></iframe>
         </div>
       </div>
       <div class="col-8">
@@ -182,10 +182,10 @@
         $(this).addClass('active');
         $('.cwb-rain-item').css('left','-10000px');
         $('#'+id).css('left','15px');
-    })
+    });
     $('a.nav-link.etcdashboard').on('shown.bs.tab', function () {
         $('iframe#etcdashboard').attr('src',$(this).attr("data-src"));
-    })
+    });
     $('#refresh').on('click', function() {
         $('iframe').each(function () {
           this.contentWindow.location.reload(true);
@@ -193,7 +193,15 @@
         var imgradar=$('img#radar');
         imgradar.attr('src',imgradar.attr('data-src')+'?t='+Date.now());
         updateTimestamp();
-    })
+    });
+    $("a[href='#graph']").on("click",function() {
+       var iframe=$('iframe#rain');
+       var currentHref=iframe.contents().get(0).location.href;
+       if (!currentHref.endsWith(iframe.attr('data-src'))) {
+         console.log("set back to original view");
+         iframe.attr('src',iframe.attr('data-src'));
+       }
+    });
     $(document).ready(function(){
         loadCWBETAGMapping();
         $('iframe').each(function() {
