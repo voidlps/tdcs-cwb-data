@@ -70,8 +70,13 @@
                data-src="/app/kibana#/dashboard/AV7iNm7_u6UGG-0py_yB?embed=true&_g=(refreshInterval%3A(display%3AOff%2Cpause%3A!f%2Cvalue%3A0)%2Ctime%3A(from%3Anow-1h%2Cmode%3Aquick%2Cto%3Anow))"
             >國道三號北上</a>
           </li>
+           <li class="nav-item">
+             <a class="nav-link etcdashboard" href="#no3n" role="tab" data-toggle="pill"
+                data-src="/app/kibana#/dashboard/AV8U3uuVnIWRclb_Uxvw?embed=true&_g=(refreshInterval%3A(display%3AOff%2Cpause%3A!f%2Cvalue%3A0)%2Ctime%3A(from%3Anow-3d%2Fd%2Cmode%3Arelative%2Cto%3Anow))"
+             >資料狀況</a>
+           </li>
         </ul>
-        <div class="embed-responsive embed-responsive-21by9">
+        <div class="embed-responsive embed-responsive-16by9">
            <iframe id="etcdashboard" class="etcdashboard"></iframe>
         </div>
       </div>
@@ -101,7 +106,8 @@
       });
       iframe.find("g.square").off('click').on('click',function(event) {
         var data=$(this).prop("__data__");
-        kibanaEventHandler(iframeSelector+",g.square:"+data.series+","+data.x+","+data.y);
+        if (data && data.series && data.x && data.y)
+          kibanaEventHandler(iframeSelector+",g.square:"+data.series+","+data.x+","+data.y);
         event.stopPropagation();
       });
       iframe.find("g.series.histogram").off('click').on('click',function(event) {
