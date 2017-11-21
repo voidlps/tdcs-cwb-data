@@ -104,6 +104,14 @@
         kibanaEventHandler(iframeSelector+",div.legend-value-title:"+$(this).text().trim());
         event.stopPropagation();
       });
+      $(iframeSelector).each(function() {
+        var w = this.contentWindow;
+        if (w.$ && w.angular) {
+          w.$("div.legend-value-title").each(function() {
+            w.angular.element(this).unbind();
+          });
+        }
+      });
       iframe.find("g.tick").off('click').on('click',function(event) {
         kibanaEventHandler(iframeSelector+",g.tick:"+$(this).text().trim());
         event.stopPropagation();
