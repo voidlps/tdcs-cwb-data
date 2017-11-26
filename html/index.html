@@ -132,6 +132,9 @@
     function cwbStationSelection(station) {
       console.log(station);
       var name=cwbList[station].name;
+      var lat=cwbList[station].lat;
+      var lon=cwbList[station].lon;
+      var latlon=lat+','+lon;
       var found = etagCWB.filter(function(row) {
         return row.cwb_gauge==station;
       });
@@ -146,6 +149,21 @@
         }).join(" ");
         $("#selection").html("<button type='button' class='selection btn btn-success' data-query='" + query + "' onclick='showTimeseries(event)')>"+display+"</button> (請點選開啟區域分析圖表)");
         console.log("rain station selcted:" + station + "?" + query);
+        $('#selection button').popover({
+          html: true,
+          placement: 'bottom',
+          trigger: 'hover',
+          content: name + '氣象站及週邊國道流量位置'
+             + '<hr/>'
+             + '<img src="https://maps.googleapis.com/maps/api/staticmap?'
+                + 'center='+latlon+'&zoom=11&size=200x200&maptype=hybrid'
+                + '&style=feature:road.highway.controlled_access%7Celement:geometry.stroke%7Ccolor:0xf02020%7Cweight:3'
+                + '&markers=color:red%7C'+ latlon +'&'
+                + found.map(function(row) { 
+                    return wkt_geomLineStringToPath(row.wkt_geom)
+                  }).join('&')
+                + '&key=AIzaSyCYqiyE08j2KKxh1-NzJ-Wu0gCf6-8l87Y">'
+        });
       } 
     }
 
