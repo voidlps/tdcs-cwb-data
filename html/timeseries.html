@@ -10,7 +10,22 @@
 </head>
 <body>
 <div class="jumbotron">
-  <h3><span id="selected_area" class="bg-success text-white"></span><br/>區域過去24小時資訊
+  <h4><span id="selected_area" class="bg-success text-white"></span></h4>
+<div class="btn-group" data-toggle="buttons">
+  <label class="btn btn-primary active">
+    <input type="radio" name="options" value="now-24h" autocomplete="off" checked>
+    過去24小時
+  </label>
+  <label class="btn btn-primary">
+    <input type="radio" name="options" value="now-72h" autocomplete="off">
+    過去72小時
+  </label>
+  <label class="btn btn-primary">
+    <input type="radio" name="options" value="now-7d" autocomplete="off">
+    過去一週
+  </label>
+</div>
+<br/>
 <!--
    <button type="button" class="btn btn-light border border-dark" id="refresh">
     <img src="icon/octicons-6.0.1/lib/svg/sync.svg"/>更新資料
@@ -21,12 +36,14 @@
   <br/>
   <iframe id=dashboard height="600" width="900"></iframe>
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
   <script>
      // should be 'station:A1AA50+OR+id:01F0147S+OR+id:01F0155S'
      var query = window.location.search==''?'*':window.location.search.substring(1);
      var hash= window.location.hash==''?'':window.location.hash.substring(1);
      $("#selected_area").text(decodeURI(hash));
-     var dashboard="/app/kibana#/dashboard/AV7khiffu6UGG-0py_yE?embed=true&_g=(refreshInterval:(display:Off,pause:!f,value:0),time:(from:now-24h,mode:quick,to:now))&_a=(description:'',filters:!(),options:(darkTheme:!f),panels:!((col:1,id:AV7WF4gZkBFclQVreqPJ,panelIndex:1,row:1,size_x:12,size_y:3,type:visualization),(col:1,id:AV7hrRjmu6UGG-0py_x9,panelIndex:2,row:4,size_x:12,size_y:2,type:visualization)),query:(query_string:(query:'" + query + "')),timeRestore:!t,title:Past24H,uiState:(P-1:(vis:(legendOpen:!t))),viewMode:view)"
+     var dashboard="/app/kibana#/dashboard/AV7khiffu6UGG-0py_yE?embed=true&_g=(refreshInterval:(display:Off,pause:!f,value:0),time:(from:STARTTIME,mode:quick,to:now))&_a=(description:'',filters:!(),options:(darkTheme:!f),panels:!((col:1,id:AV7WF4gZkBFclQVreqPJ,panelIndex:1,row:1,size_x:12,size_y:3,type:visualization),(col:1,id:AV7hrRjmu6UGG-0py_x9,panelIndex:2,row:4,size_x:12,size_y:2,type:visualization)),query:(query_string:(query:'" + query + "')),timeRestore:!t,title:Past24H,uiState:(P-1:(vis:(legendOpen:!t))),viewMode:view)"
      function fixKibana(iframeSelector) {
        var iframe=$(iframeSelector).contents();
        var filterBar=iframe.find("filter-bar");
@@ -51,8 +68,15 @@
        if (retry)
          setTimeout(function() {fixKibana(iframeSelector)},1000);
      }
-     $("#dashboard").attr("src",dashboard);
-     fixKibana("#dashboard");
+     
+     function updateStartTime() {
+       $("#dashboard").attr("src",dashboard.replace('STARTTIME',$('input[name="options"]:checked').val()));
+       fixKibana("#dashboard");
+     }
+     $(document).ready(function() {
+       $('input[name="options"]').on('change',updateStartTime);
+       updateStartTime();
+     });
   </script>
 </div>
 </body>
