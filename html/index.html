@@ -13,6 +13,9 @@
       width: 95%;
       max-width: 95%;
     }
+    .popover {
+      max-width: 450px;
+    }
   </style>
 </head>
 <body>
@@ -154,18 +157,31 @@
           placement: 'bottom',
           trigger: 'hover',
           content: name + '氣象站及週邊國道流量位置'
-             + '<hr/>'
+             + '<hr style="width:400px"/>'
              + '<img src="https://maps.googleapis.com/maps/api/staticmap?'
                 + 'center='+latlon+'&zoom=11&size=200x200&maptype=hybrid'
                 + '&style=feature:road.highway.controlled_access%7Celement:geometry.stroke%7Ccolor:0xf02020%7Cweight:3'
-                + '&markers=color:red%7C'+ latlon +'&'
-                + found.map(function(row) { 
-                    return wkt_geomLineStringToPath(row.wkt_geom)
-                  }).join('&')
+                + generatePath(found)
                 + '&key=AIzaSyCYqiyE08j2KKxh1-NzJ-Wu0gCf6-8l87Y">'
         });
       } 
     }
+   
+    function generatePath(gates) {
+       var step1 = gates.map(function(row) { return row.start + '/' + row.end; }).join('/').split('/');
+       var step2 = etagCWB.filter(function(row) { return step1.includes(row.start) || step1.includes(row.end); });
+       var step3 = step2.filter(function(row) { return row.dir==='S'; });
+       var step4 = step3.sort(function(row1,row2) {return row1.ID - row2.ID;});
+       var step5 = d3.nest().key(function(row) {return row.freewayNO;}).entries(step4);
+       console.log(step5);
+       return step5.map(function(group) {
+          return  'path=color:0xffff0080%7Cweight:7%7C'
+          + group.values.map(function(row) { 
+             return parseFloat(row.lat).toFixed(6) + ',' + parseFloat(row.lon).toFixed(6)
+          }).join('%7C')
+       }).join('&');
+    }
+
 
     function showTimeseries(e) {
       var btn=$(e.target);
